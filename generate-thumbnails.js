@@ -4,7 +4,7 @@ const readline = require('readline');
 const rl = readline.createInterface({input: process.stdin, output: process.stdout});
 
 // get all image files in the current directory
-const imageFiles = fs.readdirSync(__dirname + '/tokens').filter(file => file.match(/\.(jpg|jpeg|png|gif)$/i));
+const imageFiles = fs.readdirSync(__dirname + '/images').filter(file => file.match(/\.(jpg|jpeg|png|gif)$/i));
 const thumbnailFiles = fs.readdirSync(__dirname + '/thumbnails').filter(file => file.match(/\.(jpg|jpeg|png|gif)$/i));
 
 let count = 0;
@@ -20,7 +20,7 @@ imageFiles.forEach((file) => {
     }
     count++;
 
-    Jimp.read('./tokens/' + file).then((image) => {
+    Jimp.read('./images/' + file).then((image) => {
         image.resize(128, 128);
 
         image.write('./thumbnails/' + thumbnailFile, (err) => {
